@@ -1,0 +1,7 @@
+services:
+  web:
+    build: ./angular-app/
+    ports: 
+      - "80:5000"
+  mongo:
+    image: "mongodb"
