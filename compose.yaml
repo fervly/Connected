@@ -1,7 +1,39 @@
 services:
-  web:
-    build: ./angular-app/
-    ports: 
-      - "80:5000"
+  # web:
+  #   build:
+  #     context: angular-app
+  #     target: development
+  #   ports: 
+  #     - "3000:3000"
+  #   stdin_open: true
+  #   volumes:
+  #     - ./angular-app:/usr/src/app
+  #     - /usr/src/app/node_modules
+  #   restart: always
+  #   networks:
+  #     - angular-express  
   mongo:
-    image: "mongodb"
+    restart: always
+    image: mongo:4.2.0
+    volumes:
+      - /data/db
+    networks:
+      - express-mongo
+    expose:
+      - 27017
+    ports:
+      - "27017:27017"
+  practice:
+    build:
+      context: practice
+      target: dev
+    ports: 
+      - "3000:3000"
+    stdin_open: true
+    volumes:
+      - ./practice:/usr/src/app/
+      - /usr/src/app/node_modules
+    restart: always
+networks:
+  express-mongo:
+  # angular-express:

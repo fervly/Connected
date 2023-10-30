@@ -1,0 +1,15 @@
+{
+  "name": "practice",
+  "version": "1.0.0",
+  "description": "practise",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --inspect=0.0.0.0:9229 -L index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

@@ -1,11 +1,24 @@
-FROM node:16-alpine as builder
-WORKDIR '/app'
-COPY ./package.json ./
-RUN npm install
-COPY . .
-RUN npm run build
+# Create image based on the official Node image from dockerhub
+FROM node:lts-bookworm AS development
 
-FROM nginx
+# Create app directory
+WORKDIR /usr/src/app
+
+# Copy dependency definitions
+COPY package.json /usr/src/app
+COPY package-lock.json /usr/src/app
+
+# Install dependecies
+#RUN npm set progress=false \
+#    && npm config set depth 0 \
+#    && npm i install
+RUN npm ci
+
+# Get all the code needed to run the app
+COPY . /usr/src/app
+
+# Expose the port the app runs in
 EXPOSE 3000
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/build /usr/share/nginx/html
+
+# Serve the app
+CMD ["npm", "start"]
