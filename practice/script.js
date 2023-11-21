@@ -1,47 +1,22 @@
 'use strict';
 
-/*
-console.log(document.querySelector('.message').textContent);
-document.querySelector('.message').textContent = '🎉 Correct Number!';
+// Selecting Usefull elements
+const score0El = document.getElementById('score--0');
+const score1El = document.getElementById('score--1');
+const diceEl = document.querySelector('.dice');
+const curScore0El = document.getElementById('current--0');
+const curScore1El = document.getElementById('current--1');
 
-document.querySelector('.number').textContent = 13;
-document.querySelector('.score').textContent = 10;
+const resetGame = function(){
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  diceEl.classList.add('hidden');
+  curScore0El.textContent = 0;
+  curScore1El.textContent = 0;
+}
 
-document.querySelector('.guess').value = 23;
-console.log(document.querySelector('.guess').value);
-*/
+const rollDi = function(){
+  
+}
 
-let secretNumber = Math.floor(Math.random() * 20)+1;
-let score = 20;
-let highScore = 0;
-
-const displayMessage = function (message) {
-  document.querySelector('.message').textContent = message;
-};
-
-document.querySelector('.check').addEventListener('click', function() {
-  let guess = document.querySelector('.guess').value;
-  let guessNum = Number(guess);
-  if (guessNum <= 0 || guessNum > 20) {
-    displayMessage(`Please enter a Number between 1 and 20`);
-  }
-  else if (guess < secretNumber) {
-    displayMessage(`Guess Higher!!!`)
-    console.log(guess);
-    displayMessage(`Guess is ${guess}`);
-  }
-} )
-
-///////////////////////////////////////
-// Coding Challenge #1
-
-/* 
-Implement a game rest functionality, so that the player can make a new guess! Here is how:
-
-1. Select the element with the 'again' class and attach a click event handler
-2. In the handler function, restore initial values of the score and secretNumber variables
-3. Restore the initial conditions of the message, number, score and guess input field
-4. Also restore the original background color (#222) and number width (15rem)
-
-GOOD LUCK 😀
-*/
+resetGame()
